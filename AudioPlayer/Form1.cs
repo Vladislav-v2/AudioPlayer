@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -50,6 +51,9 @@ namespace AudioPlayer
 
         char[] repeatState = { '0', '1', '2' };
         public static char repState;
+
+        Stopwatch st = new Stopwatch();
+        private int TimeShah = 2;// ускорение трека на 2 единицы
 
         private List<string> invalidFileFormat = new List<string>();
 
@@ -175,49 +179,6 @@ namespace AudioPlayer
             labTrackVal.Text = slVol.Value.ToString();
         }
 
-        private void btnNext_Click(object sender, EventArgs e) //следующий трек
-        {
-            slTime.Value = 0;
-            if (BassLike.NextTrack())
-            {
-                slTime.Maximum = BassLike.GetTimeOfStream(BassLike.Stream);
-                PlayList.Items[Vars.CurrentTrackNumber].Selected = true;
-                labTime.Text = TimeSpan.FromSeconds(BassLike.GetPosOfStream(BassLike.Stream)).ToString("mm':'ss");
-                labTimeLen.Text = TimeSpan.FromSeconds(BassLike.GetTimeOfStream(BassLike.Stream)).ToString("mm':'ss");
-                labTrackInfo.Text = PlayList.Items[Vars.CurrentTrackNumber].Text
-                    + "\n" + PlayList.Items[Vars.CurrentTrackNumber].SubItems[1].Text;
-                btnPause.BringToFront();
-            }
-
-            if (PlayList.Items.Count != 0)
-                if (BassLike.EndPlayList)
-                {
-                    btnStop_Click(this, new EventArgs());
-                    Vars.CurrentTrackNumber = 0;
-                    PlayList.Items[0].Selected = true;
-                    BassLike.EndPlayList = false;
-                    btnPlay.BringToFront();
-                    if (repState != repeatState[0])
-                        btnPlay_Click(this, null);
-                }
-        }
-
-        private void btnPrevious_Click(object sender, EventArgs e)//предыдущий трек 
-        {
-            if (PlayList.Items.Count != 0)
-            {
-                slTime.Value = 0;
-                BassLike.PreviousTrack();
-                PlayList.Items[Vars.CurrentTrackNumber].Selected = true;
-                btnPause.BringToFront();
-                labTime.Text = TimeSpan.FromSeconds(BassLike.GetPosOfStream(BassLike.Stream)).ToString("mm':'ss");
-                labTimeLen.Text = TimeSpan.FromSeconds(BassLike.GetTimeOfStream(BassLike.Stream)).ToString("mm':'ss");
-                slTime.Maximum = BassLike.GetTimeOfStream(BassLike.Stream);
-                labTrackInfo.Text = PlayList.Items[Vars.CurrentTrackNumber].Text +
-                    "\n" + PlayList.Items[Vars.CurrentTrackNumber].SubItems[1].Text;
-            }
-        }
-
         private void btnRepeat_Click(object sender, EventArgs e)
         {
             if(repState == repeatState[0])
@@ -287,6 +248,98 @@ namespace AudioPlayer
             slTime.Value = Properties.Settings.Default.slVal;
             slVol.Value = Properties.Settings.Default.slVolume;
             BassLike.Volume = slVol.Value;
+        }
+
+        private void btnNext_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                st.Start();
+                TimeShah = 2;
+                timer2.Enabled = true;
+            }
+        }
+
+        private void btnNext_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                st.Stop();
+                timer2.Enabled = false;
+                if (st.ElapsedMilliseconds < 500)
+                {
+                    slTime.Value = 0;
+                    if (BassLike.NextTrack())
+                    {
+                        slTime.Maximum = BassLike.GetTimeOfStream(BassLike.Stream);
+                        PlayList.Items[Vars.CurrentTrackNumber].Selected = true;
+                        labTime.Text = TimeSpan.FromSeconds(BassLike.GetPosOfStream(BassLike.Stream)).ToString("mm':'ss");
+                        labTimeLen.Text = TimeSpan.FromSeconds(BassLike.GetTimeOfStream(BassLike.Stream)).ToString("mm':'ss");
+                        labTrackInfo.Text = PlayList.Items[Vars.CurrentTrackNumber].Text
+                            + "\n" + PlayList.Items[Vars.CurrentTrackNumber].SubItems[1].Text;
+                        btnPause.BringToFront();
+                    }
+
+                    if (PlayList.Items.Count != 0)
+                        if (BassLike.EndPlayList)
+                        {
+                            btnStop_Click(this, new EventArgs());
+                            Vars.CurrentTrackNumber = 0;
+                            PlayList.Items[0].Selected = true;
+                            BassLike.EndPlayList = false;
+                            btnPlay.BringToFront();
+                            if (repState != repeatState[0])
+                                btnPlay_Click(this, null);
+                        }
+                }
+                st.Reset();
+            }
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (slTime.Value >= 2)
+            {
+                slTime.Value += TimeShah;
+                BassLike.SetPosOfScroll(BassLike.Stream, slTime.Value);
+                labTime.Text = TimeSpan.FromSeconds(BassLike.GetPosOfStream(BassLike.Stream)).ToString("mm':'ss");
+            }
+        }
+
+        private void btnPrevious_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                st.Start();
+                TimeShah = -2;
+                if (slTime.Value >= 2)
+                    timer2.Enabled = true;
+            }
+        }
+
+        private void btnPrevious_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                st.Stop();
+                timer2.Enabled = false;
+                if (st.ElapsedMilliseconds < 500)
+                {
+                    if (PlayList.Items.Count != 0)
+                    {
+                        slTime.Value = 0;
+                        BassLike.PreviousTrack();
+                        PlayList.Items[Vars.CurrentTrackNumber].Selected = true;
+                        btnPause.BringToFront();
+                        labTime.Text = TimeSpan.FromSeconds(BassLike.GetPosOfStream(BassLike.Stream)).ToString("mm':'ss");
+                        labTimeLen.Text = TimeSpan.FromSeconds(BassLike.GetTimeOfStream(BassLike.Stream)).ToString("mm':'ss");
+                        slTime.Maximum = BassLike.GetTimeOfStream(BassLike.Stream);
+                        labTrackInfo.Text = PlayList.Items[Vars.CurrentTrackNumber].Text +
+                            "\n" + PlayList.Items[Vars.CurrentTrackNumber].SubItems[1].Text;
+                    }
+                }
+                st.Reset();
+            }
         }
     }
 }

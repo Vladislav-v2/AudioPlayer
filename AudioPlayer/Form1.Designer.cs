@@ -33,9 +33,13 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.ControlPanel = new System.Windows.Forms.Panel();
+            this.slVol = new MB.Controls.ColorSlider();
             this.slTime = new MB.Controls.ColorSlider();
             this.panTrack = new System.Windows.Forms.Panel();
             this.labTrackInfo = new System.Windows.Forms.Label();
+            this.labTrackVal = new System.Windows.Forms.Label();
+            this.labTimeLen = new System.Windows.Forms.Label();
+            this.labTime = new System.Windows.Forms.Label();
             this.btnPlay = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPrevious = new System.Windows.Forms.Button();
@@ -51,10 +55,7 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.slVol = new MB.Controls.ColorSlider();
-            this.labTrackVal = new System.Windows.Forms.Label();
-            this.labTimeLen = new System.Windows.Forms.Label();
-            this.labTime = new System.Windows.Forms.Label();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.ControlPanel.SuspendLayout();
             this.panTrack.SuspendLayout();
             this.DragPanel.SuspendLayout();
@@ -95,6 +96,20 @@
             this.ControlPanel.Size = new System.Drawing.Size(600, 87);
             this.ControlPanel.TabIndex = 6;
             // 
+            // slVol
+            // 
+            this.slVol.BackColor = System.Drawing.Color.Transparent;
+            this.slVol.BorderRoundRectSize = new System.Drawing.Size(8, 8);
+            this.slVol.LargeChange = ((uint)(5u));
+            this.slVol.Location = new System.Drawing.Point(479, 22);
+            this.slVol.Name = "slVol";
+            this.slVol.Size = new System.Drawing.Size(109, 17);
+            this.slVol.SmallChange = ((uint)(1u));
+            this.slVol.TabIndex = 18;
+            this.slVol.Text = "colorSlider1";
+            this.slVol.ThumbRoundRectSize = new System.Drawing.Size(8, 8);
+            this.slVol.Scroll += new System.Windows.Forms.ScrollEventHandler(this.slVol_Scroll);
+            // 
             // slTime
             // 
             this.slTime.BackColor = System.Drawing.Color.Transparent;
@@ -125,6 +140,38 @@
             this.labTrackInfo.Size = new System.Drawing.Size(0, 13);
             this.labTrackInfo.TabIndex = 0;
             // 
+            // labTrackVal
+            // 
+            this.labTrackVal.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.labTrackVal.AutoSize = true;
+            this.labTrackVal.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AudioPlayer.Properties.Settings.Default, "TrackVal", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.labTrackVal.Location = new System.Drawing.Point(569, 6);
+            this.labTrackVal.Name = "labTrackVal";
+            this.labTrackVal.Size = new System.Drawing.Size(13, 13);
+            this.labTrackVal.TabIndex = 16;
+            this.labTrackVal.Text = global::AudioPlayer.Properties.Settings.Default.TrackVal;
+            // 
+            // labTimeLen
+            // 
+            this.labTimeLen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labTimeLen.AutoSize = true;
+            this.labTimeLen.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AudioPlayer.Properties.Settings.Default, "labTimeLenVal", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.labTimeLen.Location = new System.Drawing.Point(439, 6);
+            this.labTimeLen.Name = "labTimeLen";
+            this.labTimeLen.Size = new System.Drawing.Size(34, 13);
+            this.labTimeLen.TabIndex = 14;
+            this.labTimeLen.Text = global::AudioPlayer.Properties.Settings.Default.labTimeLenVal;
+            // 
+            // labTime
+            // 
+            this.labTime.AutoSize = true;
+            this.labTime.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AudioPlayer.Properties.Settings.Default, "labTimeVal", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.labTime.Location = new System.Drawing.Point(22, 6);
+            this.labTime.Name = "labTime";
+            this.labTime.Size = new System.Drawing.Size(34, 13);
+            this.labTime.TabIndex = 15;
+            this.labTime.Text = global::AudioPlayer.Properties.Settings.Default.labTimeVal;
+            // 
             // btnPlay
             // 
             this.btnPlay.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -149,7 +196,8 @@
             this.btnNext.Size = new System.Drawing.Size(35, 35);
             this.btnNext.TabIndex = 8;
             this.btnNext.UseVisualStyleBackColor = true;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            this.btnNext.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnNext_MouseDown);
+            this.btnNext.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnNext_MouseUp);
             // 
             // btnPrevious
             // 
@@ -162,7 +210,8 @@
             this.btnPrevious.Size = new System.Drawing.Size(35, 35);
             this.btnPrevious.TabIndex = 9;
             this.btnPrevious.UseVisualStyleBackColor = true;
-            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
+            this.btnPrevious.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnPrevious_MouseDown);
+            this.btnPrevious.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnPrevious_MouseUp);
             // 
             // btnRepeat
             // 
@@ -294,51 +343,9 @@
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "icon-volume_24x24.png");
             // 
-            // slVol
+            // timer2
             // 
-            this.slVol.BackColor = System.Drawing.Color.Transparent;
-            this.slVol.BorderRoundRectSize = new System.Drawing.Size(8, 8);
-            this.slVol.LargeChange = ((uint)(5u));
-            this.slVol.Location = new System.Drawing.Point(479, 22);
-            this.slVol.Name = "slVol";
-            this.slVol.Size = new System.Drawing.Size(109, 17);
-            this.slVol.SmallChange = ((uint)(1u));
-            this.slVol.TabIndex = 18;
-            this.slVol.Text = "colorSlider1";
-            this.slVol.ThumbRoundRectSize = new System.Drawing.Size(8, 8);
-            this.slVol.Scroll += new System.Windows.Forms.ScrollEventHandler(this.slVol_Scroll);
-            // 
-            // labTrackVal
-            // 
-            this.labTrackVal.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labTrackVal.AutoSize = true;
-            this.labTrackVal.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AudioPlayer.Properties.Settings.Default, "TrackVal", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.labTrackVal.Location = new System.Drawing.Point(569, 6);
-            this.labTrackVal.Name = "labTrackVal";
-            this.labTrackVal.Size = new System.Drawing.Size(13, 13);
-            this.labTrackVal.TabIndex = 16;
-            this.labTrackVal.Text = global::AudioPlayer.Properties.Settings.Default.TrackVal;
-            // 
-            // labTimeLen
-            // 
-            this.labTimeLen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labTimeLen.AutoSize = true;
-            this.labTimeLen.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AudioPlayer.Properties.Settings.Default, "labTimeLenVal", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.labTimeLen.Location = new System.Drawing.Point(439, 6);
-            this.labTimeLen.Name = "labTimeLen";
-            this.labTimeLen.Size = new System.Drawing.Size(34, 13);
-            this.labTimeLen.TabIndex = 14;
-            this.labTimeLen.Text = global::AudioPlayer.Properties.Settings.Default.labTimeLenVal;
-            // 
-            // labTime
-            // 
-            this.labTime.AutoSize = true;
-            this.labTime.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AudioPlayer.Properties.Settings.Default, "labTimeVal", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.labTime.Location = new System.Drawing.Point(22, 6);
-            this.labTime.Name = "labTime";
-            this.labTime.Size = new System.Drawing.Size(34, 13);
-            this.labTime.TabIndex = 15;
-            this.labTime.Text = global::AudioPlayer.Properties.Settings.Default.labTimeVal;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // Form1
             // 
@@ -395,6 +402,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private MB.Controls.ColorSlider slVol;
         private MB.Controls.ColorSlider slTime;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 
