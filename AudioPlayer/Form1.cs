@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Un4seen.Bass;
 
 namespace AudioPlayer
 {
@@ -24,7 +25,6 @@ namespace AudioPlayer
             repState = repeatState[0];
             FormatsLoad();
             FilesLoad();
-
         }
 
         private void FormatsLoad()
@@ -52,8 +52,8 @@ namespace AudioPlayer
         char[] repeatState = { '0', '1', '2' };
         public static char repState;
 
-        Stopwatch st = new Stopwatch();
-        private int TimeShah = 2;// ускорение трека на 2 единицы
+        Stopwatch st = new Stopwatch(); //время удержание кнопки перемота
+        private int TimeShah = 2;// перематывание трека на 2 единицы
 
         private List<string> invalidFileFormat = new List<string>();
 
@@ -69,15 +69,21 @@ namespace AudioPlayer
                     TagModel TM = new TagModel(temp[i]);
                     ListViewItem lvi = new ListViewItem();
                     lvi.Text = PlayList.Items.Count + 1 + " : " + TM.Artist + " - " + TM.Title;
-                    lvi.SubItems.Add(Path.GetExtension(temp[i])+"::"+TM.Year+"::"+TM.Channels);
+                    lvi.SubItems.Add(Path.GetExtension(temp[i]) + "::" + TM.Year + "::" + TM.Channels);
                     lvi.ImageIndex = 0;
                     PlayList.Items.Add(lvi);
-                }              
+                }
             }
             if (temp.Count() != 0)
-            { 
-                labTrackInfo.Text = PlayList.Items[Properties.Settings.Default.PlaySelect].Text
-                    + "\n"+ PlayList.Items[Properties.Settings.Default.PlaySelect].SubItems[1].Text;
+            {
+                try
+                {
+                    labTrackInfo.Text = PlayList.Items[Properties.Settings.Default.PlaySelect].Text
+                        + "\n" + PlayList.Items[Properties.Settings.Default.PlaySelect].SubItems[1].Text;
+                }
+                catch (ArgumentOutOfRangeException) {
+                    labTrackInfo.Text = PlayList.Items[0].Text + "\n" + PlayList.Items[0].SubItems[1].Text;
+                }
             }
         }
 
@@ -234,20 +240,25 @@ namespace AudioPlayer
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Bass.BASS_ChannelPause(BassLike.Stream);
             Properties.Settings.Default.slMax = slTime.Maximum;
             Properties.Settings.Default.PlaySelect = PlayList.Items.IndexOf(PlayList.SelectedItems[0]);
             Properties.Settings.Default.slVal = slTime.Value;
             Properties.Settings.Default.slVolume = slVol.Value;
+            Properties.Settings.Default.Stream = BassLike.Stream;
             Properties.Settings.Default.Save();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             PlayList.Items[Properties.Settings.Default.PlaySelect].Selected = true;
+            //PlayList.Items[0].Selected = true;
             slTime.Maximum = Properties.Settings.Default.slMax;
             slTime.Value = Properties.Settings.Default.slVal;
             slVol.Value = Properties.Settings.Default.slVolume;
+            BassLike.Stream = Properties.Settings.Default.Stream;
             BassLike.Volume = slVol.Value;
+            Bass.BASS_ChannelPause(BassLike.Stream);
         }
 
         private void btnNext_MouseDown(object sender, MouseEventArgs e)
@@ -312,8 +323,7 @@ namespace AudioPlayer
             {
                 st.Start();
                 TimeShah = -2;
-                if (slTime.Value >= 2)
-                    timer2.Enabled = true;
+                timer2.Enabled = true;
             }
         }
 
@@ -339,7 +349,12 @@ namespace AudioPlayer
                     }
                 }
                 st.Reset();
-            }
+            } 
+        }
+
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            PlayList.TileSize = new Size(PlayList.Width, 30);
         }
     }
 }

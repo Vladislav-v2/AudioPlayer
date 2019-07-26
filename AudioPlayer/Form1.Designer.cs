@@ -93,15 +93,20 @@
             this.ControlPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ControlPanel.Location = new System.Drawing.Point(0, 272);
             this.ControlPanel.Name = "ControlPanel";
-            this.ControlPanel.Size = new System.Drawing.Size(600, 87);
+            this.ControlPanel.Size = new System.Drawing.Size(620, 87);
             this.ControlPanel.TabIndex = 6;
             // 
             // slVol
             // 
+            this.slVol.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.slVol.BackColor = System.Drawing.Color.Transparent;
+            this.slVol.BarInnerColor = System.Drawing.Color.LavenderBlush;
+            this.slVol.BarOuterColor = System.Drawing.Color.RoyalBlue;
             this.slVol.BorderRoundRectSize = new System.Drawing.Size(8, 8);
+            this.slVol.ElapsedInnerColor = System.Drawing.Color.MidnightBlue;
+            this.slVol.ElapsedOuterColor = System.Drawing.Color.MintCream;
             this.slVol.LargeChange = ((uint)(5u));
-            this.slVol.Location = new System.Drawing.Point(479, 22);
+            this.slVol.Location = new System.Drawing.Point(499, 22);
             this.slVol.Name = "slVol";
             this.slVol.Size = new System.Drawing.Size(109, 17);
             this.slVol.SmallChange = ((uint)(1u));
@@ -112,12 +117,18 @@
             // 
             // slTime
             // 
+            this.slTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.slTime.BackColor = System.Drawing.Color.Transparent;
+            this.slTime.BarInnerColor = System.Drawing.Color.LavenderBlush;
+            this.slTime.BarOuterColor = System.Drawing.Color.RoyalBlue;
             this.slTime.BorderRoundRectSize = new System.Drawing.Size(8, 8);
+            this.slTime.ElapsedInnerColor = System.Drawing.Color.MidnightBlue;
+            this.slTime.ElapsedOuterColor = System.Drawing.Color.MintCream;
             this.slTime.LargeChange = ((uint)(5u));
             this.slTime.Location = new System.Drawing.Point(12, 22);
             this.slTime.Name = "slTime";
-            this.slTime.Size = new System.Drawing.Size(461, 17);
+            this.slTime.Size = new System.Drawing.Size(481, 17);
             this.slTime.SmallChange = ((uint)(1u));
             this.slTime.TabIndex = 18;
             this.slTime.Text = "colorSlider1";
@@ -126,10 +137,13 @@
             // 
             // panTrack
             // 
+            this.panTrack.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panTrack.Controls.Add(this.labTrackInfo);
-            this.panTrack.Location = new System.Drawing.Point(12, 45);
+            this.panTrack.Location = new System.Drawing.Point(12, 42);
             this.panTrack.Name = "panTrack";
-            this.panTrack.Size = new System.Drawing.Size(371, 35);
+            this.panTrack.Size = new System.Drawing.Size(391, 35);
             this.panTrack.TabIndex = 17;
             // 
             // labTrackInfo
@@ -145,7 +159,7 @@
             this.labTrackVal.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.labTrackVal.AutoSize = true;
             this.labTrackVal.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AudioPlayer.Properties.Settings.Default, "TrackVal", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.labTrackVal.Location = new System.Drawing.Point(569, 6);
+            this.labTrackVal.Location = new System.Drawing.Point(589, 6);
             this.labTrackVal.Name = "labTrackVal";
             this.labTrackVal.Size = new System.Drawing.Size(13, 13);
             this.labTrackVal.TabIndex = 16;
@@ -156,7 +170,7 @@
             this.labTimeLen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labTimeLen.AutoSize = true;
             this.labTimeLen.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AudioPlayer.Properties.Settings.Default, "labTimeLenVal", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.labTimeLen.Location = new System.Drawing.Point(439, 6);
+            this.labTimeLen.Location = new System.Drawing.Point(459, 6);
             this.labTimeLen.Name = "labTimeLen";
             this.labTimeLen.Size = new System.Drawing.Size(34, 13);
             this.labTimeLen.TabIndex = 14;
@@ -176,9 +190,11 @@
             // 
             this.btnPlay.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnPlay.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnPlay.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnPlay.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Highlight;
+            this.btnPlay.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPlay.Image = ((System.Drawing.Image)(resources.GetObject("btnPlay.Image")));
-            this.btnPlay.Location = new System.Drawing.Point(430, 45);
+            this.btnPlay.Location = new System.Drawing.Point(450, 45);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(35, 35);
             this.btnPlay.TabIndex = 10;
@@ -189,9 +205,11 @@
             // 
             this.btnNext.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnNext.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnNext.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnNext.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Highlight;
+            this.btnNext.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNext.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Image")));
-            this.btnNext.Location = new System.Drawing.Point(471, 45);
+            this.btnNext.Location = new System.Drawing.Point(491, 45);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(35, 35);
             this.btnNext.TabIndex = 8;
@@ -203,9 +221,11 @@
             // 
             this.btnPrevious.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnPrevious.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnPrevious.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnPrevious.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Highlight;
+            this.btnPrevious.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrevious.Image = ((System.Drawing.Image)(resources.GetObject("btnPrevious.Image")));
-            this.btnPrevious.Location = new System.Drawing.Point(389, 45);
+            this.btnPrevious.Location = new System.Drawing.Point(409, 45);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(35, 35);
             this.btnPrevious.TabIndex = 9;
@@ -217,9 +237,11 @@
             // 
             this.btnRepeat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRepeat.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnRepeat.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnRepeat.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Highlight;
+            this.btnRepeat.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnRepeat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRepeat.Image = ((System.Drawing.Image)(resources.GetObject("btnRepeat.Image")));
-            this.btnRepeat.Location = new System.Drawing.Point(512, 45);
+            this.btnRepeat.Location = new System.Drawing.Point(532, 45);
             this.btnRepeat.Name = "btnRepeat";
             this.btnRepeat.Size = new System.Drawing.Size(35, 35);
             this.btnRepeat.TabIndex = 6;
@@ -230,9 +252,11 @@
             // 
             this.btnEject.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEject.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnEject.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnEject.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Highlight;
+            this.btnEject.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnEject.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEject.Image = ((System.Drawing.Image)(resources.GetObject("btnEject.Image")));
-            this.btnEject.Location = new System.Drawing.Point(553, 45);
+            this.btnEject.Location = new System.Drawing.Point(573, 45);
             this.btnEject.Name = "btnEject";
             this.btnEject.Size = new System.Drawing.Size(35, 35);
             this.btnEject.TabIndex = 7;
@@ -243,9 +267,11 @@
             // 
             this.btnPause.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnPause.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnPause.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnPause.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Highlight;
+            this.btnPause.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnPause.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPause.Image = ((System.Drawing.Image)(resources.GetObject("btnPause.Image")));
-            this.btnPause.Location = new System.Drawing.Point(430, 45);
+            this.btnPause.Location = new System.Drawing.Point(450, 45);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(35, 35);
             this.btnPause.TabIndex = 11;
@@ -254,7 +280,7 @@
             // 
             // DragPanel
             // 
-            this.DragPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.DragPanel.BackColor = System.Drawing.Color.PowderBlue;
             this.DragPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.DragPanel.Controls.Add(this.picCollap);
             this.DragPanel.Controls.Add(this.picMaxim);
@@ -263,15 +289,16 @@
             this.DragPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.DragPanel.Location = new System.Drawing.Point(0, 0);
             this.DragPanel.Name = "DragPanel";
-            this.DragPanel.Size = new System.Drawing.Size(600, 26);
+            this.DragPanel.Size = new System.Drawing.Size(620, 26);
             this.DragPanel.TabIndex = 7;
+            this.DragPanel.DoubleClick += new System.EventHandler(this.picMaxim_Click);
             this.DragPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragPanel_MouseDown);
             // 
             // picCollap
             // 
             this.picCollap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.picCollap.Image = ((System.Drawing.Image)(resources.GetObject("picCollap.Image")));
-            this.picCollap.Location = new System.Drawing.Point(516, 0);
+            this.picCollap.Location = new System.Drawing.Point(536, 0);
             this.picCollap.Name = "picCollap";
             this.picCollap.Size = new System.Drawing.Size(26, 26);
             this.picCollap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -283,7 +310,7 @@
             // 
             this.picMaxim.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.picMaxim.Image = ((System.Drawing.Image)(resources.GetObject("picMaxim.Image")));
-            this.picMaxim.Location = new System.Drawing.Point(544, 0);
+            this.picMaxim.Location = new System.Drawing.Point(564, 0);
             this.picMaxim.Name = "picMaxim";
             this.picMaxim.Size = new System.Drawing.Size(26, 26);
             this.picMaxim.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -295,7 +322,7 @@
             // 
             this.picMinim.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.picMinim.Image = ((System.Drawing.Image)(resources.GetObject("picMinim.Image")));
-            this.picMinim.Location = new System.Drawing.Point(544, 0);
+            this.picMinim.Location = new System.Drawing.Point(564, 0);
             this.picMinim.Name = "picMinim";
             this.picMinim.Size = new System.Drawing.Size(26, 26);
             this.picMinim.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -308,7 +335,7 @@
             // 
             this.picExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.picExit.Image = ((System.Drawing.Image)(resources.GetObject("picExit.Image")));
-            this.picExit.Location = new System.Drawing.Point(572, 0);
+            this.picExit.Location = new System.Drawing.Point(592, 0);
             this.picExit.Name = "picExit";
             this.picExit.Size = new System.Drawing.Size(26, 26);
             this.picExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -322,17 +349,19 @@
             this.PlayList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.PlayList.BackColor = System.Drawing.Color.PowderBlue;
+            this.PlayList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.PlayList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
             this.PlayList.FullRowSelect = true;
             this.PlayList.HideSelection = false;
-            this.PlayList.Location = new System.Drawing.Point(0, 28);
+            this.PlayList.Location = new System.Drawing.Point(12, 32);
             this.PlayList.MultiSelect = false;
             this.PlayList.Name = "PlayList";
-            this.PlayList.Size = new System.Drawing.Size(588, 238);
+            this.PlayList.Size = new System.Drawing.Size(590, 238);
             this.PlayList.TabIndex = 8;
-            this.PlayList.TileSize = new System.Drawing.Size(560, 30);
+            this.PlayList.TileSize = new System.Drawing.Size(576, 30);
             this.PlayList.UseCompatibleStateImageBehavior = false;
             this.PlayList.View = System.Windows.Forms.View.Tile;
             this.PlayList.DoubleClick += new System.EventHandler(this.btnPlay_Click);
@@ -351,7 +380,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 359);
+            this.BackColor = System.Drawing.Color.LightCyan;
+            this.ClientSize = new System.Drawing.Size(620, 359);
             this.Controls.Add(this.PlayList);
             this.Controls.Add(this.DragPanel);
             this.Controls.Add(this.ControlPanel);
@@ -363,6 +393,7 @@
             this.Text = "Player";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.ControlPanel.ResumeLayout(false);
             this.ControlPanel.PerformLayout();
             this.panTrack.ResumeLayout(false);

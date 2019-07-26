@@ -51,7 +51,7 @@ namespace AudioPlayer
                         if (BassPluginsHandles[i] == 0)
                             ErrorCount++;
                     if (ErrorCount != 0)
-                        MessageBox.Show(ErrorCount + " плагинa не бло загружено","Oшибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(ErrorCount + " плагинa не было загружено","Oшибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     ErrorCount = 0;
                 }
             }
@@ -107,7 +107,7 @@ namespace AudioPlayer
 
         public static void Pause()
         {
-            if  (Bass.BASS_ChannelIsActive(Stream) == BASSActive.BASS_ACTIVE_PLAYING)
+            if (Bass.BASS_ChannelIsActive(Stream) == BASSActive.BASS_ACTIVE_PLAYING)
                 Bass.BASS_ChannelPause(Stream);
         }
 
