@@ -1,6 +1,6 @@
 ﻿namespace AudioPlayer
 {
-    partial class Form1
+    partial class AudioPlayer
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AudioPlayer));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.ControlPanel = new System.Windows.Forms.Panel();
@@ -47,10 +47,10 @@
             this.btnEject = new System.Windows.Forms.Button();
             this.btnPause = new System.Windows.Forms.Button();
             this.DragPanel = new System.Windows.Forms.Panel();
-            this.picCollap = new System.Windows.Forms.PictureBox();
-            this.picMaxim = new System.Windows.Forms.PictureBox();
-            this.picMinim = new System.Windows.Forms.PictureBox();
-            this.picExit = new System.Windows.Forms.PictureBox();
+            this.btnMax = new System.Windows.Forms.Button();
+            this.btnCollapse = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.btnMin = new System.Windows.Forms.Button();
             this.PlayList = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -59,10 +59,6 @@
             this.ControlPanel.SuspendLayout();
             this.panTrack.SuspendLayout();
             this.DragPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picCollap)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picMaxim)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picMinim)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picExit)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -106,9 +102,9 @@
             this.slVol.ElapsedInnerColor = System.Drawing.Color.MidnightBlue;
             this.slVol.ElapsedOuterColor = System.Drawing.Color.MintCream;
             this.slVol.LargeChange = ((uint)(5u));
-            this.slVol.Location = new System.Drawing.Point(499, 22);
+            this.slVol.Location = new System.Drawing.Point(491, 22);
             this.slVol.Name = "slVol";
-            this.slVol.Size = new System.Drawing.Size(109, 17);
+            this.slVol.Size = new System.Drawing.Size(117, 17);
             this.slVol.SmallChange = ((uint)(1u));
             this.slVol.TabIndex = 18;
             this.slVol.Text = "colorSlider1";
@@ -128,7 +124,7 @@
             this.slTime.LargeChange = ((uint)(5u));
             this.slTime.Location = new System.Drawing.Point(12, 22);
             this.slTime.Name = "slTime";
-            this.slTime.Size = new System.Drawing.Size(481, 17);
+            this.slTime.Size = new System.Drawing.Size(473, 17);
             this.slTime.SmallChange = ((uint)(1u));
             this.slTime.TabIndex = 18;
             this.slTime.Text = "colorSlider1";
@@ -159,7 +155,7 @@
             this.labTrackVal.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.labTrackVal.AutoSize = true;
             this.labTrackVal.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AudioPlayer.Properties.Settings.Default, "TrackVal", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.labTrackVal.Location = new System.Drawing.Point(589, 6);
+            this.labTrackVal.Location = new System.Drawing.Point(587, 6);
             this.labTrackVal.Name = "labTrackVal";
             this.labTrackVal.Size = new System.Drawing.Size(13, 13);
             this.labTrackVal.TabIndex = 16;
@@ -170,7 +166,7 @@
             this.labTimeLen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labTimeLen.AutoSize = true;
             this.labTimeLen.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AudioPlayer.Properties.Settings.Default, "labTimeLenVal", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.labTimeLen.Location = new System.Drawing.Point(459, 6);
+            this.labTimeLen.Location = new System.Drawing.Point(454, 6);
             this.labTimeLen.Name = "labTimeLen";
             this.labTimeLen.Size = new System.Drawing.Size(34, 13);
             this.labTimeLen.TabIndex = 14;
@@ -282,66 +278,77 @@
             // 
             this.DragPanel.BackColor = System.Drawing.Color.PowderBlue;
             this.DragPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DragPanel.Controls.Add(this.picCollap);
-            this.DragPanel.Controls.Add(this.picMaxim);
-            this.DragPanel.Controls.Add(this.picMinim);
-            this.DragPanel.Controls.Add(this.picExit);
+            this.DragPanel.Controls.Add(this.btnMax);
+            this.DragPanel.Controls.Add(this.btnCollapse);
+            this.DragPanel.Controls.Add(this.btnExit);
+            this.DragPanel.Controls.Add(this.btnMin);
             this.DragPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.DragPanel.Location = new System.Drawing.Point(0, 0);
             this.DragPanel.Name = "DragPanel";
             this.DragPanel.Size = new System.Drawing.Size(620, 26);
             this.DragPanel.TabIndex = 7;
-            this.DragPanel.DoubleClick += new System.EventHandler(this.picMaxim_Click);
             this.DragPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragPanel_MouseDown);
             // 
-            // picCollap
+            // btnMax
             // 
-            this.picCollap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picCollap.Image = ((System.Drawing.Image)(resources.GetObject("picCollap.Image")));
-            this.picCollap.Location = new System.Drawing.Point(536, 0);
-            this.picCollap.Name = "picCollap";
-            this.picCollap.Size = new System.Drawing.Size(26, 26);
-            this.picCollap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picCollap.TabIndex = 0;
-            this.picCollap.TabStop = false;
-            this.picCollap.Click += new System.EventHandler(this.picCollap_Click);
+            this.btnMax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMax.BackgroundImage = global::AudioPlayer.Properties.Resources.maximize_24x24;
+            this.btnMax.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnMax.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnMax.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMax.Location = new System.Drawing.Point(568, 0);
+            this.btnMax.Name = "btnMax";
+            this.btnMax.Size = new System.Drawing.Size(25, 25);
+            this.btnMax.TabIndex = 4;
+            this.btnMax.TabStop = false;
+            this.btnMax.UseVisualStyleBackColor = true;
+            this.btnMax.Click += new System.EventHandler(this.btnMax_Click);
             // 
-            // picMaxim
+            // btnCollapse
             // 
-            this.picMaxim.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picMaxim.Image = ((System.Drawing.Image)(resources.GetObject("picMaxim.Image")));
-            this.picMaxim.Location = new System.Drawing.Point(564, 0);
-            this.picMaxim.Name = "picMaxim";
-            this.picMaxim.Size = new System.Drawing.Size(26, 26);
-            this.picMaxim.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picMaxim.TabIndex = 0;
-            this.picMaxim.TabStop = false;
-            this.picMaxim.Click += new System.EventHandler(this.picMaxim_Click);
+            this.btnCollapse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCollapse.BackgroundImage = global::AudioPlayer.Properties.Resources.collapse_256;
+            this.btnCollapse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCollapse.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnCollapse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCollapse.Location = new System.Drawing.Point(543, 0);
+            this.btnCollapse.Name = "btnCollapse";
+            this.btnCollapse.Size = new System.Drawing.Size(25, 25);
+            this.btnCollapse.TabIndex = 5;
+            this.btnCollapse.TabStop = false;
+            this.btnCollapse.UseVisualStyleBackColor = true;
+            this.btnCollapse.Click += new System.EventHandler(this.btnCollapse_Click);
             // 
-            // picMinim
+            // btnExit
             // 
-            this.picMinim.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picMinim.Image = ((System.Drawing.Image)(resources.GetObject("picMinim.Image")));
-            this.picMinim.Location = new System.Drawing.Point(564, 0);
-            this.picMinim.Name = "picMinim";
-            this.picMinim.Size = new System.Drawing.Size(26, 26);
-            this.picMinim.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picMinim.TabIndex = 0;
-            this.picMinim.TabStop = false;
-            this.picMinim.Visible = false;
-            this.picMinim.Click += new System.EventHandler(this.picMinim_Click);
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExit.BackgroundImage = global::AudioPlayer.Properties.Resources.exit_24x24;
+            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnExit.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightCoral;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.Location = new System.Drawing.Point(593, 0);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(25, 25);
+            this.btnExit.TabIndex = 2;
+            this.btnExit.TabStop = false;
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // picExit
+            // btnMin
             // 
-            this.picExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picExit.Image = ((System.Drawing.Image)(resources.GetObject("picExit.Image")));
-            this.picExit.Location = new System.Drawing.Point(592, 0);
-            this.picExit.Name = "picExit";
-            this.picExit.Size = new System.Drawing.Size(26, 26);
-            this.picExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picExit.TabIndex = 0;
-            this.picExit.TabStop = false;
-            this.picExit.Click += new System.EventHandler(this.picExit_Click);
+            this.btnMin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMin.BackgroundImage = global::AudioPlayer.Properties.Resources.minimize_24x24;
+            this.btnMin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnMin.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMin.Location = new System.Drawing.Point(568, 0);
+            this.btnMin.Name = "btnMin";
+            this.btnMin.Size = new System.Drawing.Size(25, 25);
+            this.btnMin.TabIndex = 3;
+            this.btnMin.TabStop = false;
+            this.btnMin.UseVisualStyleBackColor = true;
+            this.btnMin.Click += new System.EventHandler(this.btnMin_Click);
             // 
             // PlayList
             // 
@@ -376,7 +383,7 @@
             // 
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
-            // Form1
+            // AudioPlayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -388,21 +395,16 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Form1";
+            this.Name = "AudioPlayer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Player";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.ControlPanel.ResumeLayout(false);
             this.ControlPanel.PerformLayout();
             this.panTrack.ResumeLayout(false);
             this.panTrack.PerformLayout();
             this.DragPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picCollap)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picMaxim)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picMinim)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picExit)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -420,10 +422,6 @@
         private System.Windows.Forms.Button btnEject;
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.Panel DragPanel;
-        private System.Windows.Forms.PictureBox picExit;
-        private System.Windows.Forms.PictureBox picCollap;
-        private System.Windows.Forms.PictureBox picMaxim;
-        private System.Windows.Forms.PictureBox picMinim;
         private System.Windows.Forms.Label labTrackVal;
         private System.Windows.Forms.Panel panTrack;
         private System.Windows.Forms.Label labTrackInfo;
@@ -434,6 +432,10 @@
         private MB.Controls.ColorSlider slVol;
         private MB.Controls.ColorSlider slTime;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Button btnMax;
+        private System.Windows.Forms.Button btnCollapse;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnMin;
     }
 }
 

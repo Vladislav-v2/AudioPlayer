@@ -9,7 +9,7 @@ namespace AudioPlayer
     public static class Vars
     {
         //путь у испольняемому  файлу
-        public static Form1 Link;
+        public static AudioPlayer Link;
         public static string AppPath = AppDomain.CurrentDomain.BaseDirectory;
 
         public static List<string> Files = new List<string>();

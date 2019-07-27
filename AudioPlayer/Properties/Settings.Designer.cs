@@ -118,5 +118,17 @@ namespace AudioPlayer.Properties {
                 this["Stream"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int loopChannel {
+            get {
+                return ((int)(this["loopChannel"]));
+            }
+            set {
+                this["loopChannel"] = value;
+            }
+        }
     }
 }

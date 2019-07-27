@@ -25,8 +25,11 @@ namespace AudioPlayer
         //прелист польностью проигран
         public static bool EndPlayList;
 
+        //список плагинов
         public static readonly List<int> BassPluginsHandles = new List<int>();
 
+        //зацикливание трека
+        public static int loop;
         //метод инициалтизации
         public static bool InitBasss(int hz)
         {
@@ -59,19 +62,17 @@ namespace AudioPlayer
             return InitDefoultDevice;
         }
 
-        private static bool loop;//зациклен ли трек
-
         public static void loop_channel(int flag) //установить / снять зацикление
         {
             if (flag == 4)
             {
+                loop = 4;
                 Bass.BASS_ChannelFlags(Stream, BASSFlag.BASS_SAMPLE_LOOP, BASSFlag.BASS_SAMPLE_LOOP);
-                loop = true;
             }
             if (flag == 0)
             {
+                loop = 0;
                 Bass.BASS_ChannelFlags(Stream, 0, BASSFlag.BASS_SAMPLE_LOOP);
-                loop = false;
             }
         }
 
@@ -82,9 +83,8 @@ namespace AudioPlayer
                 Stop();
                 if (InitBasss(HZ))
                 {
-                    if (!loop)
-                        Stream = Bass.BASS_StreamCreateFile(fileName, 0, 0, BASSFlag.BASS_DEFAULT);
-                    else Stream = Bass.BASS_StreamCreateFile(fileName, 0, 0, BASSFlag.BASS_SAMPLE_LOOP);
+
+                    Stream = Bass.BASS_StreamCreateFile(fileName, 0, 0, (BASSFlag)loop);
                     if (Stream != 0)
                     {
                         Volume = vol;

@@ -10,13 +10,12 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Un4seen.Bass;
 
 namespace AudioPlayer
 {
-    public partial class Form1 : Form
+    public partial class AudioPlayer : Form
     {
-        public Form1()
+        public AudioPlayer()
         {
             InitializeComponent();
             Vars.Link = this;
@@ -113,10 +112,10 @@ namespace AudioPlayer
             if ((PlayList.Items.Count != 0) && (PlayList.SelectedItems.Count == 1))
             {
                 string current = Vars.Files[PlayList.Items.IndexOf(PlayList.SelectedItems[0])];
-                Vars.CurrentTrackNumber = PlayList.Items.IndexOf(PlayList.SelectedItems[0]);
-                labTrackInfo.Text = PlayList.Items[Vars.CurrentTrackNumber].Text 
-                    + "\n" + PlayList.Items[Vars.CurrentTrackNumber].SubItems[1].Text;
+                Vars.CurrentTrackNumber = PlayList.Items.IndexOf(PlayList.SelectedItems[0]);              
                 BassLike.Play(current, BassLike.Volume);
+                labTrackInfo.Text = PlayList.Items[Vars.CurrentTrackNumber].Text
+                    + "\n" + PlayList.Items[Vars.CurrentTrackNumber].SubItems[1].Text;
                 labTime.Text = TimeSpan.FromSeconds(BassLike.GetPosOfStream(BassLike.Stream)).ToString("mm':'ss");
                 labTimeLen.Text = TimeSpan.FromSeconds(BassLike.GetTimeOfStream(BassLike.Stream)).ToString("mm':'ss");
                 slTime.Maximum = BassLike.GetTimeOfStream(BassLike.Stream);
@@ -208,57 +207,10 @@ namespace AudioPlayer
             }
         }
 
-        private void picExit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void picMinim_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Normal;
-            picMinim.Visible = false;
-            picMaxim.Visible = true;
-        }
-
-        private void picMaxim_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Maximized;
-            picMaxim.Visible = false;
-            picMinim.Visible = true;
-        }
-
-        private void picCollap_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-
         private void DragPanel_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(Handle, 0x112, 0xf012, 0);
-        }
-
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Bass.BASS_ChannelPause(BassLike.Stream);
-            Properties.Settings.Default.slMax = slTime.Maximum;
-            Properties.Settings.Default.PlaySelect = PlayList.Items.IndexOf(PlayList.SelectedItems[0]);
-            Properties.Settings.Default.slVal = slTime.Value;
-            Properties.Settings.Default.slVolume = slVol.Value;
-            Properties.Settings.Default.Stream = BassLike.Stream;
-            Properties.Settings.Default.Save();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            PlayList.Items[Properties.Settings.Default.PlaySelect].Selected = true;
-            //PlayList.Items[0].Selected = true;
-            slTime.Maximum = Properties.Settings.Default.slMax;
-            slTime.Value = Properties.Settings.Default.slVal;
-            slVol.Value = Properties.Settings.Default.slVolume;
-            BassLike.Stream = Properties.Settings.Default.Stream;
-            BassLike.Volume = slVol.Value;
-            Bass.BASS_ChannelPause(BassLike.Stream);
         }
 
         private void btnNext_MouseDown(object sender, MouseEventArgs e)
@@ -351,10 +303,6 @@ namespace AudioPlayer
                 st.Reset();
             } 
         }
-
-        private void Form1_SizeChanged(object sender, EventArgs e)
-        {
-            PlayList.TileSize = new Size(PlayList.Width, 30);
-        }
+ 
     }
 }

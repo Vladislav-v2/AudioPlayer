@@ -49,6 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AudioPlayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="cls\BassLike.cs" />
     <Compile Include="cls\TagModel.cs" />
     <Compile Include="cls\Vars.cs" />
