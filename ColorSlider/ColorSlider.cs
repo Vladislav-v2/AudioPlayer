@@ -901,7 +901,6 @@ namespace MB.Controls
             int v = e.Delta / 120 * (barMaximum - barMinimum) / mouseWheelBarPartitions;
             SetProperValue(Value + v);
         }
-
         /// <summary>
         /// Raises the <see cref="E:System.Windows.Forms.Control.GotFocus"></see> event.
         /// </summary>

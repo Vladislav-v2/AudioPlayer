@@ -58,7 +58,6 @@ namespace AudioPlayer
                     ErrorCount = 0;
                 }
             }
-
             return InitDefoultDevice;
         }
 
@@ -76,7 +75,7 @@ namespace AudioPlayer
             }
         }
 
-        public static void Play(string fileName, int vol)
+        public static bool Play(string fileName, int vol)
         {
             if (Bass.BASS_ChannelIsActive(Stream) != BASSActive.BASS_ACTIVE_PAUSED)
             {
@@ -90,12 +89,16 @@ namespace AudioPlayer
                         Volume = vol;
                         Bass.BASS_ChannelSetAttribute(Stream, BASSAttribute.BASS_ATTRIB_VOL, Volume / 100F);
                         Bass.BASS_ChannelPlay(Stream, false);
+                        isStoped = false;
+                        return true;
                     }
                 }
             }
             else
-            Bass.BASS_ChannelPlay(Stream, false);
+                Bass.BASS_ChannelPlay(Stream, false);
             isStoped = false;
+            return false;
+
         }
 
         public static void Stop()
@@ -129,6 +132,12 @@ namespace AudioPlayer
         public static void SetPosOfScroll(int stream, int pos)
         {
             Bass.BASS_ChannelSetPosition(stream,(double)pos);
+        }
+
+        //изминение скорости воспроизведения(не работает)
+        public static void SetSpeedStream(int stream, int speed)
+        {
+            Bass.BASS_ChannelSetAttribute(stream,BASSAttribute.BASS_ATTRIB_MUSIC_SPEED, speed);
         }
         //изминения громкости треков
         public static void SetVolumeStream(int stream, int vol)

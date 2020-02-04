@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,9 @@ namespace AudioPlayer
         public string Album;
         public string Title;
         public string Year;
+        //public string Lyricist; //слова, автор
         public TimeSpan Length;
+        public Image Pictute;
 
         Dictionary<int, string> ChannelsDist = new Dictionary<int, string>()
         {
@@ -25,7 +28,7 @@ namespace AudioPlayer
             {2,"Stereo"}
         };
 
-        public TagModel (string file)
+        public TagModel(string file)
         {
             TAG_INFO tagInfo = new TAG_INFO();
             tagInfo = BassTags.BASS_TAG_GetFromFile(file);
@@ -34,10 +37,9 @@ namespace AudioPlayer
             Channels = ChannelsDist[tagInfo.channelinfo.chans];
             Artist = tagInfo.artist;
             Album = tagInfo.album;
-            if (tagInfo.title == "")
-                Title = Vars.GetFileName(file);
-            else Title = tagInfo.title;
-            Year = tagInfo.year;
+            Title = (tagInfo.title == "") ? Vars.GetFileName(file) : tagInfo.title;
+            Year = (tagInfo.year != "") ?  tagInfo.year : DateTime.Now.Year.ToString();
+            Pictute = (tagInfo.PictureCount>0) ? tagInfo.PictureGetImage(0) : Properties.Resources.misic;
         }
     }
 }

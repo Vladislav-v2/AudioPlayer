@@ -65,7 +65,7 @@ namespace AudioPlayer.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap collapse_256 {
             get {
-                object obj = ResourceManager.GetObject("collapse-256", resourceCulture);
+                object obj = ResourceManager.GetObject("collapse_256", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -95,7 +95,7 @@ namespace AudioPlayer.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap icon_play_24x24 {
             get {
-                object obj = ResourceManager.GetObject("icon-play_24x24", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_play_24x24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -135,7 +135,17 @@ namespace AudioPlayer.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap maximize_24x24 {
             get {
-                object obj = ResourceManager.GetObject("maximize-24x24", resourceCulture);
+                object obj = ResourceManager.GetObject("maximize_24x24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap menu_icon {
+            get {
+                object obj = ResourceManager.GetObject("menu_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -145,7 +155,87 @@ namespace AudioPlayer.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap minimize_24x24 {
             get {
-                object obj = ResourceManager.GetObject("minimize-24x24", resourceCulture);
+                object obj = ResourceManager.GetObject("minimize_24x24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap misic {
+            get {
+                object obj = ResourceManager.GetObject("misic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap music_album {
+            get {
+                object obj = ResourceManager.GetObject("music_album", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap music_album1 {
+            get {
+                object obj = ResourceManager.GetObject("music_album1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap music_icon_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("music_icon_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap music_songs {
+            get {
+                object obj = ResourceManager.GetObject("music_songs", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap settings_icon {
+            get {
+                object obj = ResourceManager.GetObject("settings_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap shuffle_icon {
+            get {
+                object obj = ResourceManager.GetObject("shuffle_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap shuffle_icon0 {
+            get {
+                object obj = ResourceManager.GetObject("shuffle_icon0", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

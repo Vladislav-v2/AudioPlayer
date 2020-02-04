@@ -130,5 +130,17 @@ namespace AudioPlayer.Properties {
                 this["loopChannel"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int repState {
+            get {
+                return ((int)(this["repState"]));
+            }
+            set {
+                this["repState"] = value;
+            }
+        }
     }
 }
